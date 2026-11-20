@@ -1,1 +1,2 @@
-Not deployed yet. Local walkthrough: http://localhost:3000
+Live app: https://docshare-od8c.onrender.com/
+Video walkthrough: https://youtu.be/XY5WTD1ERHE
