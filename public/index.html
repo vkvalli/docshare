@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Docshare</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/quill@1.3.7/dist/quill.snow.css">
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <a class="brand" href="/" aria-label="Docshare home"><span class="brand-icon">D</span> Docshare</a>
+      <label class="user-label" for="user-select">Signed in as</label>
+      <select id="user-select" aria-label="Switch user">
+        <option value="alice">Alice</option>
+        <option value="bob">Bob</option>
+        <option value="carol">Carol</option>
+      </select>
+      <button id="new-doc" class="new-doc-button" type="button"><span aria-hidden="true">＋</span> New document</button>
+      <label class="upload-button" for="file-upload"><span aria-hidden="true">↑</span> Upload a file</label>
+      <input id="file-upload" type="file" accept=".txt,.md,.docx,text/plain,text/markdown,application/vnd.openxmlformats-officedocument.wordprocessingml.document" hidden>
+      <p class="upload-hint">Supported: .txt, .md, .docx · Max 2 MB</p>
+      <nav class="document-nav" aria-label="Your documents">
+        <section class="doc-section">
+          <h2>Owned by me</h2>
+          <ul id="owned-list" class="doc-list"></ul>
+          <p id="owned-empty" class="empty-list">No documents yet</p>
+        </section>
+        <section class="doc-section shared-section">
+          <h2>Shared with me</h2>
+          <ul id="shared-list" class="doc-list"></ul>
+          <p id="shared-empty" class="empty-list">No shared documents</p>
+        </section>
+      </nav>
+      <p class="sidebar-footnote">A simple place for your documents.</p>
+    </aside>
+
+    <main class="main-area">
+      <header class="topbar">
+        <div class="breadcrumb">My workspace <span aria-hidden="true">/</span> <span id="topbar-title">No document open</span></div>
+        <div class="topbar-right">
+          <span id="save-status" class="save-status" aria-live="polite"></span>
+          <span id="access-badge" class="access-badge" hidden></span>
+        </div>
+      </header>
+      <div id="error-banner" class="error-banner" role="alert" hidden></div>
+
+      <section id="welcome" class="welcome-view">
+        <div class="welcome-icon" aria-hidden="true">✎</div>
+        <h1>Your documents, in one place</h1>
+        <p>Create a document or open one from the sidebar.</p>
+        <button id="welcome-new-doc" class="primary-button" type="button">Create a document</button>
+      </section>
+
+      <section id="editor-view" class="editor-view" hidden>
+        <div class="document-heading">
+          <input id="document-title" class="document-title" type="text" maxlength="160" aria-label="Document title" placeholder="Untitled document">
+          <div class="heading-actions">
+            <button id="share-toggle" class="secondary-button" type="button">Share</button>
+          </div>
+        </div>
+        <div id="share-panel" class="share-panel" hidden>
+          <div class="share-panel-title">Share document</div>
+          <p class="share-panel-description">Choose a user and access level.</p>
+          <div class="share-controls">
+            <select id="share-user" aria-label="User to share with"></select>
+            <select id="share-role" aria-label="Access level">
+              <option value="view">Can view</option>
+              <option value="edit">Can edit</option>
+            </select>
+            <button id="share-submit" class="primary-button small-button" type="button">Share</button>
+          </div>
+          <div id="share-list" class="share-list"></div>
+        </div>
+        <div id="quill-toolbar" class="toolbar">
+          <span class="ql-formats">
+            <select class="ql-header" aria-label="Heading">
+              <option selected></option>
+              <option value="1">Heading 1</option>
+              <option value="2">Heading 2</option>
+              <option value="3">Heading 3</option>
+            </select>
+          </span>
+          <span class="ql-formats">
+            <button class="ql-bold" aria-label="Bold"></button>
+            <button class="ql-italic" aria-label="Italic"></button>
+            <button class="ql-underline" aria-label="Underline"></button>
+          </span>
+          <span class="ql-formats">
+            <button class="ql-list" value="bullet" aria-label="Bulleted list"></button>
+            <button class="ql-list" value="ordered" aria-label="Numbered list"></button>
+          </span>
+        </div>
+        <div id="editor-container" class="editor-container"></div>
+        <div id="readonly-note" class="readonly-note" hidden>You have view-only access to this document.</div>
+      </section>
+    </main>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/quill@1.3.7/dist/quill.min.js"></script>
+  <script src="/app.js" defer></script>
+</body>
+</html>
