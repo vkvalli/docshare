@@ -58,3 +58,6 @@ The app writes data under `data/store.json`. Render's free web services use an e
 ## Storage
 
 The JSON store is initialized with the three mock accounts and writes updates through a temporary file followed by an atomic rename. Do not edit `data/store.json` while the server is running.
+
+## Live App: https://docshare-od8c.onrender.com/
+Test accounts : alice, bob , carol(pick one in the dropdown at the top of the page. No password required)
